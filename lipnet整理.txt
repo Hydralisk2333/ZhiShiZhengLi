@@ -1,0 +1,205 @@
+1. aligns.py
+	类：class Align(object)
+	函数：
+	__init__(self, absolute_max_string_len=32, label_func=None)
+	作用：初始化函数，第一个参数是，第二个参数是
+	
+	from_file(self, path)
+	作用：打开一个align文件，文件里面的每行数据是（数字，数字，字符串）的形式
+	strip()用法
+	代码：
+	str = "00000003210Runoob01230000000"; 
+	print str.strip( '0' );  # 去除首尾字符 0 
+	str2 = "   Runoob      ";   # 去除首尾空格
+	print str2.strip();
+	结果：
+	3210Runoob0123
+	Runoob
+	
+	from_array(self, align)
+	作用：调用build函数
+	
+	
+	build(self, align)
+	作用：其中align是个列表，[(1.23,2.34,'apt'),...]的形式，用来获取sentence，label，padded_label
+	
+	strip(self, align, items)
+	作用：将align列表中每个元素第三个元素在items集合中的元素剔除
+	
+	get_sentence(self, align)
+	作用：将align中的元素的第三变量拼接起来
+	join用法
+	代码：
+	lines={(1,2,'3'),(4,5,'6')}
+	String= " ".join([y[-1] for y in align if y[-1] not in ['a','b']])
+	输出
+	6 3
+	
+	get_label(self, sentence)
+	作用：返回一个label列表，具体就是把一个字符串转换成了0-26的列表值['abc ']=[0,1,2，26]
+	return self.label_func(sentence)这行代码是转入了label_func指向的函数
+	
+	get_padded_label(self, label)
+	作用：得到一个定长的label列表
+	np.concatenate((np.array(label), padding)用法
+	拼接左右两个矩阵
+	输出：
+	[1. 2. 3. 1. 1. 1. 1. 1. 1. 1. 1.]
+	
+2. curriculums.py
+	
+	
+	
+	
+3. video.py
+	sorted用法
+	用于返回一个排序好的列表，不改变原列表
+	输入：
+	x =[4, 6, 2, 1, 7, 9]
+	y = sorted(x)
+	输出：
+	print (y) #[1, 2, 4, 6, 7, 9]
+	print (x) #[4, 6, 2, 1, 7, 9]
+	
+	scipy.ndimage.imread(fname,flatten=False)：
+	将图片转换为数组，如果mode默认为‘RGB’，则返回的数组的形状为（height , width, 3)，其中frame可以是路径
+	
+	enumerate用法
+	作用：enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。
+	输入：
+	>>>seq = ['one', 'two', 'three']
+	>>> for i, element in enumerate(seq):
+	...     print i, element
+	...
+	输出:
+	0 one
+	1 two
+	2 three
+	
+	
+	dlib.get_frontal_face_datector(PythonFunction，in Classes)
+	返回值是<class 'dlib.dlib.rectangle'>，就是一个矩形
+	坐标为[(x1, y1) (x2, y2)]
+	
+	
+	shape = predictor(img, box)用法
+	功能：定位人脸关键点
+	参数：img：一个numpy ndarray，包含8位灰度或RGB图像
+　　box：开始内部形状预测的边界框
+	返回值：68个关键点的位置
+
+4. generator.py
+	multiprocessing.Value用法
+	Value的初始化非常简单，直接类似Value('d', 0.0)即可，具体构造方法为：
+　　multiprocessing.Value(typecode_or_type, *args[, lock])。
+	对于共享整数或者单个字符，初始化比较简单，参照下图映射关系即可。如i = Value('i', 1), c = Value('c', '0')。
+	如果共享的是字符串，则在上表是找不到映射关系的，就是没有code可用。所以我们需要使用原始的ctype类型
+　　例如 
+　　from ctypes import c_char_p
+　　ss = Value(c_char_p, 'ss')
+	具体可访问 https://blog.csdn.net/chenyulancn/article/details/77836593
+	
+	kargs用法
+	def test(a,*args,**kwargs):
+    print a
+    print args
+    print kwargs
+	test(1,2,3,d='4',e=5)
+	输出结果：
+	1
+	(2, 3)
+	{'e': 5, 'd': '4'}
+	意思就是1还是参数a的值，args表示剩余的值，kwargs在args之后表示成对键值对。
+	
+	K.image_data_format()用法
+	我们知道彩色图像一般会有Width, Height, Channels，而“channels_first”或“channels_last”，则代表数据的通道维的位置。该参数是Keras 1.x中的image_dim_ordering，“channels_last”对应原本的“tf”，“channels_first”对应原本的“th”。以128x128x128的数据为例，“channels_first”应将数据组织为（3,128,128,128），而“channels_last”应将数据组织为（128,128,128,3）。该参数的默认值是~/.keras/keras.json中设置的值，若从未设置过，则为“channels_last”。
+	
+	glob用法
+	glob方法：	glob模块的主要方法就是glob,该方法返回所有匹配的文件路径列表（list）；该方法需要一个参数用来指定匹配的路径字符串（字符串可以为绝对路径也可以为相对路径），其返回的文件名只包括当前目录里的文件名，不包括子文件夹里的文件。
+	比如：
+	glob.glob(r’c:*.txt’)
+	我这里就是获得C盘下的所有txt文件
+	glob.glob(r’E:\pic**.jpg’)
+	获得指定目录下的所有jpg文件
+	使用相对路径：
+	glob.glob(r’../*.py’)
+	https://blog.csdn.net/u010472607/article/details/76857493/
+	
+	os.path.splitext(“文件路径”)
+	分离文件名与扩展名；默认返回(fname,fextension)元组，可做分片操作
+	例子：
+	import os
+	path_01='D:/User/wgy/workplace/data/notMNIST_large.tar.gar'
+	path_02='D:/User/wgy/workplace/data/notMNIST_large'
+	root_01=os.path.splitext(path_01)
+	root_02=os.path.splitext(path_02)
+	print(root_01)
+	print(root_02)
+	输出：
+	('D:/User/wgy/workplace/data/notMNIST_large.tar', '.gar')
+	('D:/User/wgy/workplace/data/notMNIST_large', '')
+	
+	Python中Pickle模块的dump()方法和load()方法
+	pickle.dump(obj, file, [,protocol])
+	pickle.load(file)
+	存取对象，读取对象
+
+	np.random.shuffle(x) 现场修改序列，改变自身内容。（类似洗牌，打乱顺序）
+	
+	ret += l[0:size - len(ret)]
+	list中的加号相当于向后拼接
+	
+	#随机数发生器
+	rng = numpy.random.RandomState(23455)
+	#产生一个数字全在0-1之间的2行3列的数组
+	arrayA = rng.uniform(0,1,(2,3))
+	
+5. model2.py
+	keras Input用法
+	Input用于初始化一个Keras张量
+	Input(shape=None,batch_shape=None,name=None,dtype=K.floatx(),sparse=False,tensor=None)
+	#参数：
+	shape: 形状元组（整型），不包括batch size。for instance, shape=(32,) 表示了预期的输入将是一批32维的向量。
+	batch_shape: 形状元组（整型），包括了batch size。for instance, batch_shape=(10,32)表示了预期的输入将是10个32维向量的批次。
+	name: 对于该层是可选的名字字符串。在一个模型中是独一无二的（同一个名字不能复用2次）。如果name没有被特指将会自动生成。
+	dtype: 预期的输入数据类型
+	sparse: 特定的布尔值，占位符是否为sparse
+	tensor: 可选的存在的向量包装到Input层，如果设置了，该层将不会创建一个占位张量。
+	#返回 一个张量
+	
+	BatchNormalization用法
+	BatchNormalization(name='batc1')(self.conv1)
+	该层在每个batch上将前一层的激活值重新规范化，即使得其输出数据的均值接近0，其标准差接近1。
+	函数原理：
+	THAT’S IT。其实一句话就是：对于每个隐层神经元，把逐渐向非线性函数映射后向取值区间极限饱和区靠拢的输入分布强制拉回到均值为0方差为1的比较标准的正态分布，使得非线性变换函数的输入值落入对输入比较敏感的区域，以此避免梯度消失问题。因为梯度一直都能保持比较大的状态，所以很明显对神经网络的参数调整效率比较高，就是变动大，就是说向损失函数最优值迈动的步子大，也就是说收敛地快。BN说到底就是这么个机制，方法很简单，道理很深刻。
+	https://www.cnblogs.com/guoyaohua/p/8724433.html
+	
+	Keras Activation用法
+	Activation('relu', name='actv1')(self.batc1)
+	这是一个ReLU型的激活函数
+	
+	Keras Flatten的用法
+	用于将数据压成一维数据
+	
+	Keras TimeDistributed
+	相当于共享权值
+	
+	Keras Dense用法
+	keras.layers.core.Dense(output_dim,init='glorot_uniform', activation='linear', weights=None 
+	W_regularizer=None, b_regularizer=None, activity_regularizer=None, 
+	W_constraint=None, b_constraint=None, input_dim=None) 
+	第一个参数是输出元个数
+	
+	TimeDistributed
+	层在每个时间步上均操作了Dense，即在每个时间步上都产生一个全连接。由上面几个图明显可以看出了增加了模型实现一对多和多对多的能力。如果你使用正常的Dense层，你最后只会得到一个结果。
+	https://www.cnblogs.com/zle1992/p/9083645.html
+	
+	kernel_initializer='Orthogonal'
+	用随机正交矩阵初始化
+	
+	merge_mode='concat'
+	mode选取值为{“sum”，“mul”，“concat”，“ave”，“cos”，“dot”}
+	其中sum和mul是对待合并层输出做一个简单的求和、乘积运算，因此要求待合并层输出shape要一致。concat是将待合并层输出沿着最后一个维度进行拼接，因此要求待合并层输出只有最后一个维度不同。 
+	
+	GRU()中的return_sequences：
+	布尔值，默认False，控制返回类型。若为True则返回整个序列，否则仅返回输出序列的最后一个输出
