@@ -1,0 +1,14 @@
+Keras中文文档主页
+https://keras.io/zh/
+
+1. Dense的使用
+	就是个全连接层，神经网络中的某一个层
+	keras.layers.Dense(units, activation=None, use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)
+	Dense 实现以下操作： output = activation(dot(input, kernel) + bias) 其中 activation 是按逐个元素计算的激活函数，kernel 是由网络层创建的权值矩阵，以及 bias 是其创建的偏置向量 (只在 use_bias 为 True 时才有用)。
+	注意: 如果该层的输入的秩大于2，那么它首先被展平然后 再计算与 kernel 的点乘。（主要是考虑非单层输入）
+	
+	输入尺寸
+	nD 张量，尺寸: (batch_size, ..., input_dim)。 最常见的情况是一个尺寸为 (batch_size, input_dim) 的 2D 输入。
+	输出尺寸
+	nD 张量，尺寸: (batch_size, ..., units)。 例如，对于尺寸为 (batch_size, input_dim) 的 2D 输入， 输出的尺寸为 (batch_size, units)。
+	
