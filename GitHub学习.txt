@@ -15,6 +15,7 @@
 	git config --list #查看被克隆的仓库的信息
 	git push #将本地仓库提交到远程git仓库
 	git add . #一次add所有文件
+	git fetch #得到远程仓库中的更新值，就是为了更新自己的仓库
 	
 3. git使用
 	流程如下：
