@@ -1,0 +1,34 @@
+argparse
+	命令行选项、参数和子命令解析器。
+	https://www.jianshu.com/p/00425f6c0936
+	
+vars() 
+	函数返回对象object的属性和属性值的字典对象。
+	vars([对象])
+	
+os.path.dirname(path)
+	功能：去掉文件名，返回目录
+	print(os.path.dirname("E:/Read_File/read_yaml.py"))
+	#结果：
+	E:/Read_File
+	
+shape = predictor(img, box)(dlib)
+	功能：定位人脸关键点
+	参数：img：一个numpy ndarray，包含8位灰度或RGB图像
+　　	box：开始内部形状预测的边界框
+	返回值：68个关键点的位置
+	
+np.amax(a, axis=0/1)
+	返回：一维数组a中的最大值，二维数组需通过axis指定行或列，最大行的所有元素或者最大列的所有元素，如不指定，则是所有元素的最大值
+	arr = np.array([[1,2],
+                [9,6]])
+	print(arr)
+	maxr = np.amax(arr, axis=1)
+	print(maxr)
+	输出：
+	[[1 2]
+	[9 6]]
+	[2 9]
+	
+cv2.putText(img, str(i), (123,456)), font, 2, (0,255,0), 3)
+	各参数依次是：图片，添加的文字，左上角坐标，字体，字体大小，颜色，字体粗细
