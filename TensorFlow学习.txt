@@ -1,0 +1,75 @@
+程序需要在会话中的图运行，一个会话里面可以有多个图
+
+tf.constant([[2,2]]) 
+	生成一个一行两列的常量
+	
+tf.matmal(a,b) 
+	矩阵a，b相乘
+	
+tf.Session()
+	创建会话，产生一个默认图
+	session使用完后需要关闭
+	用with语句可以不用关闭，类似于文件打开
+	session.run()执行一个程序
+	
+tf.Variable()
+	tf变量使用之前需要先初始化，即使有初值也不行
+	tf.global_variables_initializer()给所有变量初始化，类似于使能
+	在session里面执行时要先运行这个初始化
+	
+tf.assign(a,b)赋值操作
+	把后面的值赋给前面的值
+	
+session.run([mul,add])
+	执行多个操作
+	
+tf.placeholder(数据类型，[None,1](表示行列) )
+	产生占位符，表示先占一个变量的位置，等运行的时候再输入值
+	运行时用(feed_dict{a:[ ],b:[ ] }的形式
+	
+tf.reduce_mean 求平均值
+tf.square 求平方
+optimizer = tf.train.gradient...(学习率) 表示梯度下降法的学习器
+optimizer.minimize(loss) 用于最小化loss值，这个loss值需要自己定义
+tf.nn.tanh()激活函数
+
+input_data.read_data_sets("路径",one-hot=true)
+	后一个参数表示是否使用one—_hot编码
+	暂且限于minist数据集
+	
+tf.nn.softmax() softmax处理
+
+tf.argmax(a,b)
+	求a矩阵按照b(0是按列取，1是按行取)的最大值)的下标位置
+
+tf.equal()
+	表示两个是否相等，返回布尔值
+	
+tf.cast(转换的列表，目标数据类型)
+	表示转类型
+	
+minist.train_next_batch(batch_size) 
+	表示下个批次输入batch_size大小的数据
+	
+session.run(要执行的操作（梯度下降），feed_dict={x:xin,y:yin}) 这个样子 
+
+tf.data.Dataset.from_tensor_slices
+前言:
+最近在学习tf2
+数据加载感觉蛮方便的
+这里记录下使用 tf.data.Dataset.from_tensor_slices 进行加载数据集.
+使用tf2做mnist（kaggle）的代码
+
+思路
+Step0: 准备要加载的numpy数据
+Step1: 使用 tf.data.Dataset.from_tensor_slices() 函数进行加载
+Step2: 使用 shuffle() 打乱数据
+Step3: 使用 map() 函数进行预处理
+Step4: 使用 batch() 函数设置 batch size 值
+Step5: 根据需要 使用 repeat() 设置是否循环迭代数据集
+
+
+tf.nn.conv2d(x, W, strides = [1,1,1,1], padding = 'SAME')
+x：表示输入tensor，shape是[batch,height,width,channel]
+W：表示过滤核，shape为：[核的高度，核的宽度，输入频道数，输出频道数 ]
+strides: [a,b,c,d] c和d用来控制高度和宽度

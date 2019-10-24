@@ -1,0 +1,3 @@
+shift + enter 执行片段的程序
+tab键补全函数变量名
+shift + tab键可以看到函数里面的描述
